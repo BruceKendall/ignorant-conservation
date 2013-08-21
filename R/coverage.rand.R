@@ -8,19 +8,13 @@
 #' @param PR.x number of planning units along the side of the planning region
 #' @param c1 length-2 vector giving the lower left coordinate of the species 
 #'    range. Defaults to a random location in the planning region
-#' @param c2 length-2 vector giving the upper right coordinate of the species
-#'    range. Defaults to a value that will produce a square range with side
-#'    range.x. This should never be set to a non-default value!
 #' @return fraction of the species range that is included in reserves
 #' @details There appears to be no error checking to ensure that the whole 
 #'    species range is within the planning region. In fact, it seems that the 
-#'    upper bound on c1 should be `PR.x - range.x`. In addition, the ability
-#'    to specify `c2` suggests that I intended this to be used with rectangular
-#'    species ranges; but the code explicitly assumes that the range has
-#'    length `range.x` in both dimensions.
+#'    upper bound on c1 should be `PR.x - range.x`. 
 coverage.rand <-
-function(res.num, range.x, PR.x, c1 = runif(2, 1, PR.x),
-                         c2 = c1 + range.x) {
+function(res.num, range.x, PR.x, c1 = runif(2, 1, PR.x)) {
+  c2 = c1 + range.x
   cf1 = floor(c1)
   cf2 = floor(c2)
   if (range.x < 1) {
