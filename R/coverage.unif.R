@@ -7,17 +7,11 @@
 #' @param range.x length of one side of the species range
 #' @param c1 length-2 vector giving the lower left coordinate of the species 
 #'    range. Defaults to a random location in the planning region
-#' @param c2 length-2 vector giving the upper right coordinate of the species
-#'    range. Defaults to a value that will produce a square range with side
-#'    range.x. This should never be set to a non-default value!
 #' @return fraction of the species range that is included in reserves
-#' @details The ability
-#'    to specify `c2` suggests that I intended this to be used with rectangular
-#'    species ranges; but the code explicitly assumes that the range has
-#'    length `range.x` in both dimensions.
 coverage.unif <-
 function(x.unif, rep.unif, n.unif, range.x,
-                         c1 = sort(runif(2, 0, rep.unif)), c2 = c1 + range.x) {
+                         c1 = sort(runif(2, 0, rep.unif))) {
+  c2 = c1 + range.x
   ijmax = ceiling(c2/rep.unif)
   Ares = 0
   for (ii in 1:ijmax[1]) {
